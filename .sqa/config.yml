@@ -1,0 +1,64 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/met-forecaster:
+      branch: main
+      repo: https://gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/met-forecaster
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/met-forecaster git:
+        commands:
+        - /usr/bin/env sh .sqa/script.foggy-brown-zebra.sh
+        container: qc.acc_sunny-cinnabar-budgerigar
+  QC.Doc:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/met-forecaster find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.skimpy-persimmon-shrew.sh
+        container: qc.doc_paltry-malachite-rat
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/met-forecaster git:
+        commands:
+        - /usr/bin/env sh .sqa/script.cheeky-ivory-boar.sh
+        container: qc.doc_cheeky-cream-duck
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/met-forecaster markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.stinky-wheat-forest.sh
+        container: qc.doc_woolly-tomato-crocodile
+  QC.Lic:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/met-forecaster licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.geeky-olive-mist.sh
+        container: qc.lic_sickly-cyan-chinchilla
+  QC.Sec:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/met-forecaster bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.squirrely-celadon-kingfisher.sh
+        container: qc.sec_flabby-dandelion-barb
+  QC.Sty:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/met-forecaster flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.ugly-celadon-barnacle.sh
+        container: qc.sty_foggy-ultramarine-catfish
+  QC.Uni:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/met-forecaster pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.cloudy-gold-chinook.sh
+        container: qc.uni_crabby-eggplant-buzzard
+  QC.Ver:
+    repos:
+      gitlab.geo3bcn.csic.es/dtgeo_geo3bcn/dtc-v2/met-forecaster get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.scanty-peach-squirrel.sh
+        container: qc.ver_nippy-beige-bracke
+timeout: 5400
